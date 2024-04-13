@@ -1,7 +1,6 @@
-version: '3.3'
 services:
   db:
-    image: postgres:14.1-alpine
+    image: postgres:16-alpine
     restart: always
     environment:
       - POSTGRES_USER=${DATABASE_USER}
@@ -18,7 +17,7 @@ services:
       dockerfile: Dockerfile
     environment:
       - DB_DB=${DATABASE_NAME}
-      - DB_HOST: db
+      - DB_HOST=db
       - DB_PORT=5432
       - DB_USER=${DATABASE_USER}
       - DB_PASSWORD=${DATABASE_PASSWORD}
@@ -34,7 +33,7 @@ services:
       dockerfile: Dockerfile
     environment:
       - DB_DB=${DATABASE_NAME}
-      - DB_HOST: db
+      - DB_HOST=db
       - DB_PORT=5432
       - DB_USER=${DATABASE_USER}
       - DB_PASSWORD=${DATABASE_PASSWORD}
@@ -49,7 +48,7 @@ services:
       context: front
       dockerfile: Dockerfile
     environment:
-      - API_URL: cartonback
+      - API_URL=cartonback
     ports:
       - '8081:4200'
     image: cartonfront

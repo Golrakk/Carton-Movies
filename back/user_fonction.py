@@ -2,7 +2,6 @@ import string
 
 from Utilisateur import User
 import psycopg2
-import json
 from configparser import ConfigParser
 
 

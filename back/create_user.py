@@ -1,8 +1,5 @@
 import psycopg2
-import json
 import os
-
-from configparser import ConfigParser
 
 
 def config():

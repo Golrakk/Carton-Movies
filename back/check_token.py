@@ -1,9 +1,6 @@
 import psycopg2
-import json
-import jwt
+import jwt # type: ignore
 import os
-
-from configparser import ConfigParser
 
 
 def config():
