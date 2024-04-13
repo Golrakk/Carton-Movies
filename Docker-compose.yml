@@ -11,7 +11,11 @@ services:
       - '5432:5432'
     volumes:
       - db:/var/lib/postgresql/data
-  microback:
+
+  cartonback:
+    build:
+      context: back
+      dockerfile: Dockerfile
     environment:
       - DB_DB=${DATABASE_NAME}
       - DB_HOST: db
@@ -20,17 +24,22 @@ services:
       - DB_PASSWORD=${DATABASE_PASSWORD}
     ports:
       - '8080:8080'
-    image: microback
+    image: cartonback
     links:
       - db
-  microfront:
+
+  cartonfront:
+    build:
+      context: app
+      dockerfile: Dockerfile
     environment:
-      - API_URL: microback
+      - API_URL: cartonback
     ports:
       - '8081:4200'
-    image: microfront
+    image: cartonfront
     links:
-      - microback
+      - cartonback
+
 volumes:
   db:
     driver: local
