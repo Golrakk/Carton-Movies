@@ -46,7 +46,7 @@ services:
 
   cartonfront:
     build:
-      context: app
+      context: front
       dockerfile: Dockerfile
     environment:
       - API_URL: cartonback
