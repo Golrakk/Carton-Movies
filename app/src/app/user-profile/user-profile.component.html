@@ -1,0 +1,15 @@
+Tu es {{user.nom}}
+Ton email est {{user.email}}
+
+<div>
+    <label for="nouveauMDP">Changer le mot de passe</label>
+    <input [(ngModel)]="nouveauMDP" type="text">
+</div>
+<div>
+    <label for="nouveauMail">Changer le mail</label>
+    <input [(ngModel)]="nouveauMail" type="text">
+</div>
+
+<button (click)="onSubmitAjout()">Valider</button>
+<br>
+<a routerLink="/dejavu" href>Mes films déjà vu</a>

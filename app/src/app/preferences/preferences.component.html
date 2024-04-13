@@ -1,0 +1,19 @@
+<div class="card">
+    <h2>Préferences</h2>
+    <p>Ici vous pouvez séléctionner vos préférences de film!</p>
+</div>
+<div class="card">
+    <h2>Film Mention Adulte</h2>
+    <input type="checkbox" [(ngModel)]="this.prefAdult">Adulte
+</div>
+<div class="list-container">
+    <div class="list">
+        <div (click)="addRemovePrefs(p)" [ngClass]="{'active': this.prefsList.includes(p)}" *ngFor= "let p of prefs" class="card">
+            <p>{{p.name}}</p>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <button value="Sauvegarder" (click)="sendPrefs()">Sauvegarder</button>
+</div>

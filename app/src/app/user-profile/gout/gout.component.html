@@ -1,0 +1,30 @@
+<p>gout works!</p>
+<div>Pour les films suivants, (la liste de ceux que vous avez déjà vu), donnez votre avis
+</div>
+<div>
+    <img src="https://image.tmdb.org/t/p/w500/{{ movieEnCours.poster_path }}">
+
+</div>
+
+<div>
+    <input type="radio" id="deteste" name="fav_language" value="0">
+    <label for="deteste">Je deteste</label><br>
+
+    <input type="radio" id="bof" name="fav_language" value="3">
+    <label for="bof">J'aime pas trop</label><br>
+
+    <input type="radio" id="sapass" name="fav_language" value="7">
+    <label for="sapass">J'aime bien'</label><br>
+
+    <input type="radio" id="adore" name="fav_language" value="10">
+    <label for="adore">J'adore</label><br>
+
+    <!-- il faut voir si on donne une value au osef et si oui laquelle -->
+    <input type="radio" id="osef" name="fav_language" value="null">
+    <label for="osef">je n'ai pas d'avis</label><br>
+
+</div>
+<div>
+    <button (click)="filmPrecedant()">Précédant</button>
+    <button (click)="filmSuivant()">Suivant</button>
+</div>

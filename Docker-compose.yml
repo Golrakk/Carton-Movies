@@ -1,0 +1,36 @@
+version: '3.3'
+services:
+  db:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB=${DATABASE_NAME}
+    ports:
+      - '5432:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+  microback:
+    environment:
+      - DB_DB=${DATABASE_NAME}
+      - DB_HOST: db
+      - DB_PORT=5432
+      - DB_USER=${DATABASE_USER}
+      - DB_PASSWORD=${DATABASE_PASSWORD}
+    ports:
+      - '8080:8080'
+    image: microback
+    links:
+      - db
+  microfront:
+    environment:
+      - API_URL: microback
+    ports:
+      - '8081:4200'
+    image: microfront
+    links:
+      - microback
+volumes:
+  db:
+    driver: local
