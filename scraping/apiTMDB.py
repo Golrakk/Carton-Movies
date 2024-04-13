@@ -1,5 +1,17 @@
 import requests
 import psycopg2
+import os
+
+def config():
+    db = {
+      'host': os.environ.get('DB_HOST'),
+      'database': os.environ.get('DB_DB'),
+      'password': os.environ.get('DB_PASSWORD'),
+      'user': os.environ.get('DB_USER'),
+      'port': os.environ.get('DB_PORT')
+    }
+
+    return db
 
 def get_page(api, cur,conn):
     response = requests.get(f"{api}")
@@ -20,12 +32,13 @@ def get_data():
     conn.close()
 
 def connect_db():
+    db = config();
     conn = psycopg2.connect(
-        host="<Adresse Host>",
-        port="<Port>",
-        database="<Database>",
-        user="<Username>",
-        password="<Password>")
+        host=db['host'],
+        port=db['port'],
+        database=db['database'],
+        user=db['user'],
+        password=db['password'])
     # create a cursor
     cur = conn.cursor()
         

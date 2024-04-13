@@ -12,6 +12,22 @@ services:
     volumes:
       - db:/var/lib/postgresql/data
 
+  cartonscraping:
+    build:
+      context: scraping
+      dockerfile: Dockerfile
+    environment:
+      - DB_DB=${DATABASE_NAME}
+      - DB_HOST: db
+      - DB_PORT=5432
+      - DB_USER=${DATABASE_USER}
+      - DB_PASSWORD=${DATABASE_PASSWORD}
+    ports:
+      - '8085:8085'
+    image: cartonscraping
+    links:
+      - db
+
   cartonback:
     build:
       context: back
