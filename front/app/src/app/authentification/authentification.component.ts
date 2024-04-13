@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserServiceService } from '../services/user-service.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-authentification',
@@ -11,10 +11,10 @@ export class AuthentificationComponent {
   nouveauMDP: String = "";
   token: string = "";
 
-  constructor(public userService: UserServiceService){}
+  constructor(public userService: UserService) { }
 
 
-  public async onValidation(){
+  public async onValidation() {
     this.token = await this.userService.login(this.nouveauNom, this.nouveauMDP);
     console.log(this.token);
   }

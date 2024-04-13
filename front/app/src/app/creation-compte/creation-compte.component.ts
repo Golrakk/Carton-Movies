@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserServiceService } from '../services/user-service.service';
+import { UserService } from '../services/user.service';
 import { User } from '../modeles/user';
 import { Router } from '@angular/router';
 
@@ -16,11 +16,11 @@ export class CreationCompteComponent {
   errorMsg: string = "";
 
 
-  constructor(public userService: UserServiceService, private router: Router){}
+  constructor(public userService: UserService, private router: Router) { }
 
 
-  public onValidation(){
-    const user : User = {id : 0, nom : this.nouveauNom, email : this.nouveauEmail, password : this.nouveauMDP };
+  public onValidation() {
+    const user: User = { id: 0, nom: this.nouveauNom, email: this.nouveauEmail, password: this.nouveauMDP };
     var response = JSON.stringify(this.userService.enregistrerUser(user))
     this.router.navigate(['/login']);
   }

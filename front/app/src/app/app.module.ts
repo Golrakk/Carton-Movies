@@ -13,6 +13,7 @@ import { RechercheComponent } from './user-profile/gout/recherche/recherche.comp
 import { PreferencesComponent } from './preferences/preferences.component';
 import { AuthentificationComponent } from './authentification/authentification.component';
 import { CreationCompteComponent } from './creation-compte/creation-compte.component';
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { CreationCompteComponent } from './creation-compte/creation-compte.compo
     RechercheComponent,
     PreferencesComponent,
     AuthentificationComponent,
-    CreationCompteComponent
+    CreationCompteComponent,
+    HeaderComponent
 
   ],
   imports: [
