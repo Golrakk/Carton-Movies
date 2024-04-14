@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GoutComponent } from './gout.component';
+import { RateComponent } from './rate.component';
 
-describe('GoutComponent', () => {
-  let component: GoutComponent;
-  let fixture: ComponentFixture<GoutComponent>;
+describe('RateComponent', () => {
+  let component: RateComponent;
+  let fixture: ComponentFixture<RateComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GoutComponent ]
+      declarations: [RateComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
-    fixture = TestBed.createComponent(GoutComponent);
+    fixture = TestBed.createComponent(RateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

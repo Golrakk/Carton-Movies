@@ -8,8 +8,7 @@ import { Err404Component } from './err404/err404.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { FormsModule } from '@angular/forms';
-import { GoutComponent } from './user-profile/gout/gout.component';
-import { RechercheComponent } from './user-profile/gout/recherche/recherche.component';
+import { RateComponent } from './user-profile/rate/rate.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 import { AuthentificationComponent } from './authentification/authentification.component';
 import { RegisterComponent } from './register/register.component';
@@ -22,8 +21,7 @@ import { HeaderComponent } from './header/header.component';
     RecomendationComponent,
     Err404Component,
     UserProfileComponent,
-    GoutComponent,
-    RechercheComponent,
+    RateComponent,
     PreferencesComponent,
     AuthentificationComponent,
     RegisterComponent,

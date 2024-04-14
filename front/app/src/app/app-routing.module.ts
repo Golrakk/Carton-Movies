@@ -4,7 +4,7 @@ import { RecomendationComponent } from './recomendation/recomendation.component'
 import { Err404Component } from './err404/err404.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 import { UserProfileComponent } from "./user-profile/user-profile.component";
-import { GoutComponent } from './user-profile/gout/gout.component';
+import { RateComponent } from './user-profile/rate/rate.component';
 import { AuthentificationComponent } from './authentification/authentification.component';
 import { RegisterComponent } from './register/register.component';
 
@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'login', component: AuthentificationComponent },
   { path: 'signin', component: RegisterComponent },
   { path: 'user', component: UserProfileComponent },
-  { path: 'dejavu', component: GoutComponent },
+  { path: 'rate', component: RateComponent },
   { path: 'preferences', component: PreferencesComponent },
   { path: '*', component: Err404Component }
 ];

@@ -32,7 +32,7 @@ def get_data():
     conn.close()
 
 def connect_db():
-    db = config();
+    db = config()
     conn = psycopg2.connect(
         host=db['host'],
         port=db['port'],

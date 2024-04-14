@@ -35,7 +35,7 @@ def get_best_movies():
     cur = conn.cursor()
         
     # execute a statement
-    cur.execute(f"SELECT json_agg(json_build_object('id', id, 'title', title, 'release_date', release_date, 'poster_path', poster_path, 'genre_ids', genre_ids, 'vote_average', vote_average)) FROM (SELECT DISTINCT id, title, release_date, vote_average, poster_path, genre_ids, adult FROM movies WHERE adult = false AND vote_average < 9 ORDER BY vote_average DESC LIMIT 3) as subquery;")
+    cur.execute(f"SELECT json_agg(json_build_object('id', id, 'title', title, 'release_date', release_date, 'poster_path', poster_path, 'genre_ids', genre_ids, 'vote_average', vote_average)) FROM (SELECT DISTINCT id, title, release_date, vote_average, poster_path, genre_ids, FROM movies WHERE vote_average < 9 ORDER BY vote_average DESC LIMIT 3) as subquery;")
     # cur.excute(f"genre_ids")
    
     # display the query result
@@ -70,7 +70,7 @@ def get_model(df):
     
     # Normalize the genres column and drop unnecessary columns
     df = pd.json_normalize(df, record_path='genres', meta=['id', 'title','release_date', 'poster_path', 'vote_average'])
-    df = df.drop(columns=['adult', 'poster_path', 'title','id'])
+    df = df.drop(columns=['poster_path', 'title','id'])
     
     # Group the dataframe by movie name and score, and aggregate the genres column into a list
     df = df.groupby(['title', 'vote_average'])['id'].apply(list).reset_index(name='genre_ids')
@@ -122,8 +122,8 @@ def predict_rating(new_movie, model):
     """
     
     # Create a DataFrame with the new movie data
-    new = pd.json_normalize(new_movie, record_path='genres', meta=['adult', 'name', 'poster_path'])
-    new = new.drop(columns=['adult', 'poster_path'])
+    new = pd.json_normalize(new_movie, record_path='genres', meta=['name', 'poster_path'])
+    new = new.drop(columns=['poster_path'])
     new = new.groupby(['name'])['id'].apply(list).reset_index(name='genres')
     new = pd.concat([new.drop(['genres'], axis=1), pd.json_normalize(new['genres'])], axis=1)
     new = new.drop(columns=['id'])
