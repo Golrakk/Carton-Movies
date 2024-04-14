@@ -5,11 +5,11 @@ import os
 
 def config():
     db = {
-      'host': os.environ.get('DB_HOST'),
-      'database': os.environ.get('DB_DB'),
-      'password': os.environ.get('DB_PASSWORD'),
-      'user': os.environ.get('DB_USER'),
-      'port': os.environ.get('DB_PORT')
+      'host': os.environ.get('USER_DB_HOST'),
+      'database': os.environ.get('USER_DB_NAME'),
+      'password': os.environ.get('USER_DB_PASSWORD'),
+      'user': os.environ.get('USER_DB_USER'),
+      'port': os.environ.get('USER_DB_PORT')
     }
 
     return db
@@ -25,11 +25,12 @@ def check_token(token):
     # create a cursor
     cur = conn.cursor()
     
-    secret_key = 'my-secret-key'
+    secret_key = os.environ.get('TOKEN_SECRET')
+    algorithm = os.environ.get('TOKEN_ALGORITHM')
 
-    test = True
+    res = True
     try:
-        payload = jwt.decode(token, secret_key, algorithms=['HS256'])
+        payload = jwt.decode(token, secret_key, algorithms=[algorithm])
     except:
         cur.close()
         conn.close()
@@ -38,13 +39,13 @@ def check_token(token):
     cur.execute(f"SELECT * FROM users WHERE name = \'{payload['username']}\';")
 
     result = cur.fetchone()
-    if( result == None) and test:
-        test = False
+    if(result == None) and res:
+        res = False
     else:
         print(result)
-        test = True
+        res = True
 
     cur.close()
     conn.close()
 
-    return(test)
+    return(res)

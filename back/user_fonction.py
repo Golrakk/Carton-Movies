@@ -1,17 +1,20 @@
+import os
 import string
 
-from Utilisateur import User
 import psycopg2
 from configparser import ConfigParser
+from user import User
 
+conn = psycopg2.connect(
+    host=os.environ.get('USER_DB_HOST'),
+    port=os.environ.get('USER_DB_PORT'),
+    database=os.environ.get('USER_DB_NAME'),
+    user=os.environ.get('USER_DB_USER'),
+    password=os.environ.get('USER_DB_PASSWORD')
+)
 
 def read_db(req: string):
-    conn = psycopg2.connect(
-        host="bpv7mlbngflnnamyjr6x-postgresql.services.clever-cloud.com",
-        port="6172",
-        database="bpv7mlbngflnnamyjr6x",
-        user="uljpz0f1fxjpdk0ps0be",
-        password="xLpCEPFKqrG8uV12sQbK")
+    
     # create a cursor
     cur = conn.cursor()
 
@@ -28,12 +31,7 @@ def read_db(req: string):
 
 
 def update_bdd(req: string):
-    conn = psycopg2.connect(
-        host="bpv7mlbngflnnamyjr6x-postgresql.services.clever-cloud.com",
-        port="6172",
-        database="bpv7mlbngflnnamyjr6x",
-        user="uljpz0f1fxjpdk0ps0be",
-        password="xLpCEPFKqrG8uV12sQbK")
+    
     # create a cursor
     cur = conn.cursor()
 
@@ -92,10 +90,3 @@ def create_user(name, email, password):
     conn.commit()
     conn.close()
 
-
-# monUser = User()
-# monUser.id = 7
-# monUser.nom = "monSuperNomTropChouette"
-# monUser.email = "monEmailBcpTropUtile"
-# monUser.password = "monPasswordTropSecur"
-# post_user_bdd(monUser)

@@ -4,11 +4,11 @@ import os
 
 def config():
     db = {
-      'host': os.environ.get('DB_HOST'),
-      'database': os.environ.get('DB_DB'),
-      'password': os.environ.get('DB_PASSWORD'),
-      'user': os.environ.get('DB_USER'),
-      'port': os.environ.get('DB_PORT')
+      'host': os.environ.get('USER_DB_HOST'),
+      'database': os.environ.get('USER_DB_NAME'),
+      'password': os.environ.get('USER_DB_PASSWORD'),
+      'user': os.environ.get('USER_DB_USER'),
+      'port': os.environ.get('USER_DB_PORT')
     }
 
     return db

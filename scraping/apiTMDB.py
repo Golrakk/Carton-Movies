@@ -2,13 +2,15 @@ import requests
 import psycopg2
 import os
 
+API_KEY = os.environ.get('API_KEY')
+
 def config():
     db = {
-      'host': os.environ.get('DB_HOST'),
-      'database': os.environ.get('DB_DB'),
-      'password': os.environ.get('DB_PASSWORD'),
-      'user': os.environ.get('DB_USER'),
-      'port': os.environ.get('DB_PORT')
+      'host': os.environ.get('MOVIE_DB_HOST'),
+      'database': os.environ.get('MOVIE_DB_NAME'),
+      'password': os.environ.get('MOVIE_DB_PASSWORD'),
+      'user': os.environ.get('MOVIE_DB_USER'),
+      'port': os.environ.get('MOVIE_DB_PORT')
     }
 
     return db
@@ -26,7 +28,7 @@ def get_data():
     (conn,cur) = connect_db()
 
     for i in range(101,1000):
-        get_page("https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&page=" + str(i) + "&api_key=b93c28130019357b890f9a136df53ce2", cur, conn)
+        get_page("https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&page=" + str(i) + "&api_key=" + API_KEY, cur, conn)
 
     cur.close()
     conn.close()

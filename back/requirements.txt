@@ -6,4 +6,3 @@ pandas
 numpy
 configparser
 scikit-learn
-uvicorn

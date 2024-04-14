@@ -11,11 +11,11 @@ from sklearn.model_selection import train_test_split
 
 def config():
     db = {
-      'host': os.environ.get('DB_HOST'),
-      'database': os.environ.get('DB_DB'),
-      'password': os.environ.get('DB_PASSWORD'),
-      'user': os.environ.get('DB_USER'),
-      'port': os.environ.get('DB_PORT')
+      'host': os.environ.get('MOVIE_DB_HOST'),
+      'database': os.environ.get('MOVIE_DB_NAME'),
+      'password': os.environ.get('MOVIE_DB_PASSWORD'),
+      'user': os.environ.get('MOVIE_DB_USER'),
+      'port': os.environ.get('MOVIE_DB_PORT')
     }
 
     return db
@@ -33,7 +33,7 @@ def get_best_movies():
     # execute a statement
     cur.execute(f"SELECT json_agg(json_build_object('id', id, 'title', title, 'release_date', release_date, 'poster_path', poster_path, 'genre_ids', genre_ids, 'vote_average', vote_average)) FROM (SELECT DISTINCT id, title, release_date, vote_average, poster_path, genre_ids, adult FROM movies WHERE adult = false AND vote_average < 9 ORDER BY vote_average DESC LIMIT 3) as subquery;")
     # cur.excute(f"genre_ids")
-   
+    
     # display the query result
     result = cur.fetchone()[0]
     print(result)
