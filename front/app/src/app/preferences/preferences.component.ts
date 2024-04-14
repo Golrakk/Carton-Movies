@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { Preferences, prefs } from '../modeles/prefs';
 import { NgModel } from '@angular/forms';
 
-@Component({
-  selector: 'app-preferences',
-  templateUrl: './preferences.component.html',
-  styleUrls: ['./preferences.component.css']
-})
+// @Component({
+//   selector: 'app-preferences',
+//   templateUrl: './preferences.component.html',
+//   styleUrls: ['./preferences.component.css']
+// })
 export class PreferencesComponent {
   prefs: Preferences[];
   prefsList: Preferences[];
