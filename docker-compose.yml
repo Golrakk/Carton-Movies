@@ -1,0 +1,82 @@
+services:
+  user_db:
+    image: postgres:16-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB=${USER_DATABASE_NAME}
+    ports:
+      - '5432:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+      - ./user_init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  movie_db:
+    image: postgres:16-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB=${MOVIE_DATABASE_NAME}
+    ports:
+      - '5433:5432'
+    volumes:
+      - movie_db:/var/lib/postgresql/data
+      - ./movie_init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  cartonscraping:
+    build:
+      context: scraping
+      dockerfile: Dockerfile
+    environment:
+      - API_KEY=${API_KEY}
+      - MOVIE_DB_HOST=movie_db
+      - MOVIE_DB_NAME=${MOVIE_DATABASE_NAME}
+      - MOVIE_DB_PASSWORD=${DATABASE_PASSWORD}
+      - MOVIE_DB_USER=${DATABASE_USER}
+      - MOVIE_DB_PORT=5432
+    expose:
+      - '8000'
+    depends_on:
+      - movie_db
+
+  cartonback:
+    build:
+      context: back
+      dockerfile: Dockerfile
+    environment:
+      - USER_DB_NAME=${USER_DATABASE_NAME}
+      - USER_DB_HOST=user_db
+      - USER_DB_PORT=5432
+      - USER_DB_USER=${DATABASE_USER}
+      - USER_DB_PASSWORD=${DATABASE_PASSWORD}
+      - API_KEY=${API_KEY}
+      - TOKEN_SECRET=${TOKEN_SECRET}
+      - TOKEN_ALGORITHM=${TOKEN_ALGORITHM}
+      - MOVIE_DB_HOST=movie_db
+      - MOVIE_DB_NAME=${MOVIE_DATABASE_NAME}
+      - MOVIE_DB_PORT=5433
+      - MOVIE_DB_USER=${DATABASE_USER}
+      - MOVIE_DB_PASSWORD=${DATABASE_PASSWORD}
+    ports:
+      - '8080:8080'
+    depends_on:
+      - user_db
+      - movie_db
+
+  cartonfront:
+    build:
+      context: front
+      dockerfile: Dockerfile
+    environment:
+      - API_URL=cartonback
+    ports:
+      - '8081:4200'
+
+volumes:
+  db:
+    driver: local
+  movie_db:
+    driver: local
+    # driver to change if we want to use cloud storage

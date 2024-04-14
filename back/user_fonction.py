@@ -1,26 +1,20 @@
+import os
 import string
 
-from Utilisateur import User
 import psycopg2
-import json
 from configparser import ConfigParser
-import os
+from user import User
 
-def config():
-    db = {
-      'host': os.environ.get('DB_HOST'),
-      'database': os.environ.get('DB_DB'),
-      'password': os.environ.get('DB_PASSWORD'),
-      'user': os.environ.get('DB_USER'),
-      'port': os.environ.get('DB_PORT')
-    }
-
-    return db
+conn = psycopg2.connect(
+    host=os.environ.get('USER_DB_HOST'),
+    port=os.environ.get('USER_DB_PORT'),
+    database=os.environ.get('USER_DB_NAME'),
+    user=os.environ.get('USER_DB_USER'),
+    password=os.environ.get('USER_DB_PASSWORD')
+)
 
 def read_db(req: string):
-    # read connection parameters
-    params = config()
-    conn = psycopg2.connect(**params)
+    
     # create a cursor
     cur = conn.cursor()
 
@@ -37,9 +31,7 @@ def read_db(req: string):
 
 
 def update_bdd(req: string):
-    # read connection parameters
-    params = config()
-    conn = psycopg2.connect(**params)
+    
     # create a cursor
     cur = conn.cursor()
 
@@ -98,10 +90,3 @@ def create_user(name, email, password):
     conn.commit()
     conn.close()
 
-
-# monUser = User()
-# monUser.id = 7
-# monUser.nom = "monSuperNomTropChouette"
-# monUser.email = "monEmailBcpTropUtile"
-# monUser.password = "monPasswordTropSecur"
-# post_user_bdd(monUser)

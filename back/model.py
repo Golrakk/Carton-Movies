@@ -1,25 +1,21 @@
-import numpy as np
 import pandas as pd
 import pickle
 import json
 
 import psycopg2
-from configparser import ConfigParser
 import os
 
-from pandas import json_normalize
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+from sklearn.metrics import accuracy_score, classification_report
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
 
 def config():
     db = {
-      'host': os.environ.get('DB_HOST'),
-      'database': os.environ.get('DB_DB'),
-      'password': os.environ.get('DB_PASSWORD'),
-      'user': os.environ.get('DB_USER'),
-      'port': os.environ.get('DB_PORT')
+      'host': os.environ.get('MOVIE_DB_HOST'),
+      'database': os.environ.get('MOVIE_DB_NAME'),
+      'password': os.environ.get('MOVIE_DB_PASSWORD'),
+      'user': os.environ.get('MOVIE_DB_USER'),
+      'port': os.environ.get('MOVIE_DB_PORT')
     }
 
     return db
@@ -37,7 +33,7 @@ def get_best_movies():
     # execute a statement
     cur.execute(f"SELECT json_agg(json_build_object('id', id, 'title', title, 'release_date', release_date, 'poster_path', poster_path, 'genre_ids', genre_ids, 'vote_average', vote_average)) FROM (SELECT DISTINCT id, title, release_date, vote_average, poster_path, genre_ids, FROM movies WHERE vote_average < 9 ORDER BY vote_average DESC LIMIT 3) as subquery;")
     # cur.excute(f"genre_ids")
-   
+    
     # display the query result
     result = cur.fetchone()[0]
     print(result)

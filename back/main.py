@@ -2,13 +2,13 @@ from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
 
-from Utilisateur import User
 from model import *
 from get_movie_list import *
 from genres import *
 from gen_user_token import *
 from check_token import *
 from user_fonction import *
+from user import User
 
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -36,7 +36,7 @@ app.add_middleware(
 @app.get("/")
 async def root():
     best_movies = get_best_movies()
-    return {"message": "Welcome to the movie recommendation API!", "best_movies": best_movies}
+    return {"message": "Welcome !", "best_movies": best_movies}
 
 @app.get("/api/movieList/{search}")
 async def get_search_api(search, token):
@@ -100,7 +100,7 @@ async def post_user(user: User, token):
         return {"Invalid Token"}
 
 @app.get("/api/getUser")
-async def get_user(name: string, token):
+async def get_user(name: str, token):
     if(check_token(token)):
         return {"message": get_user_bdd(name)}
     else:

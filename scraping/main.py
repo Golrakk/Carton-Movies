@@ -1,11 +1,8 @@
 from fastapi import FastAPI
-from fastapi.responses import FileResponse
-from pydantic import BaseModel
 
 from apiTMDB import *
 
 from fastapi.middleware.cors import CORSMiddleware
-
 
 app = FastAPI()
 origins = [
@@ -23,4 +20,3 @@ app.add_middleware(
 @app.get("/")
 async def root():
     get_data()
-    return "movie database initialised"

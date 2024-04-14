@@ -1,18 +1,15 @@
 import psycopg2
-import json
-import jwt
+import jwt # type: ignore
 import os
-
-from configparser import ConfigParser
 
 
 def config():
     db = {
-      'host': os.environ.get('DB_HOST'),
-      'database': os.environ.get('DB_DB'),
-      'password': os.environ.get('DB_PASSWORD'),
-      'user': os.environ.get('DB_USER'),
-      'port': os.environ.get('DB_PORT')
+      'host': os.environ.get('USER_DB_HOST'),
+      'database': os.environ.get('USER_DB_NAME'),
+      'password': os.environ.get('USER_DB_PASSWORD'),
+      'user': os.environ.get('USER_DB_USER'),
+      'port': os.environ.get('USER_DB_PORT')
     }
 
     return db
@@ -48,8 +45,9 @@ def get_user_token(name, password):
         'email': result[2]
     }
     
-    secret_key = 'my-secret-key'
-    token = jwt.encode(payload, secret_key, algorithm='HS256')
+    secret_key = os.environ.get('TOKEN_SECRET')
+    algorithm = os.environ.get('TOKEN_ALGORITHM')
+    token = jwt.encode(payload, secret_key, algorithm=algorithm)
 
     print(token)
 
