@@ -1,25 +1,26 @@
+<h1>Welcome</h1>
 <div class="card">
-  <h2>Welcome</h2>
   <p>Here is a list of movies for you!</p>
 </div>
 <div class="card">
   <label for="user">Add another user</label>
   <input [(ngModel)]="user" type="text">
   <button (click)="addUser()">Add user</button>
-
-  <div *ngIf="searched">
-    <div *ngIf="userFound">
-      The user was found, the list was modifief
-    </div>
-    <div *ngIf="!userFound">
-      Your user was not found, try again
-    </div>
+</div>
+<div *ngIf="searched">
+  <div *ngIf="userFound">
+    The user was found, the list was modifief
   </div>
-  <div class="list">
-    <div *ngFor="let movie of movies" [ngClass]="{ 'card': true, 'movie-card': true }">
-      <h1>{{ movie.title }}</h1>
-      <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" class="movie-image">
-      <p>Date de sortie: {{ movie.release_date }}</p>
-      <p>Note: {{ movie.vote_average }}/10</p>
-    </div>
+  <div *ngIf="!userFound">
+    Your user was not found, try again
   </div>
+</div>
+<div class="list">
+  <div *ngFor="let movie of movies" [ngClass]="{ 'card': true, 'movie-card': true }">
+    <h1>{{ movie.title }}</h1>
+    <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" class="movie-image">
+    <p>Date de sortie: {{ movie.release_date }}</p>
+    <p>Note: {{ movie.vote_average }}/10</p>
+  </div>
+</div>
+<p [(ngModel)]="errorMsg"></p>

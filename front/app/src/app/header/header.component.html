@@ -1,11 +1,12 @@
-<nav>
-    <ul>
-        <li routerLink="/">Find your movie!</li>
-        <li routerLink="/login" *ngIf="!user.isLoggedIn">Log in</li>
-        <li routerLink="/signin" *ngIf="!user.isLoggedIn">Sign In</li>
-        <li routerLink="/user" *ngIf="user.isLoggedIn">My Profile</li>
-        <li routerLink="/rate" *ngIf="user.isLoggedIn">List your Movies</li>
-        <li routerLink="/preferences" *ngIf="user.isLoggedIn">My preferences</li>
-        <li routerLink="/" *ngIf="user.isLoggedIn">Log out</li>
-    </ul>
-</nav>
+<div class="header">
+    <nav>
+        <ul>
+            <li routerLink="/" *ngIf="user.isLoggedIn()">Find your movies!</li>
+            <li routerLink="/login" *ngIf="!user.isLoggedIn()">Log in</li>
+            <li routerLink="/signin" *ngIf="!user.isLoggedIn()">Sign In</li>
+            <li routerLink="/user" *ngIf="user.isLoggedIn()">My Profile</li>
+            <li routerLink="/rate" *ngIf="user.isLoggedIn()">List your Movies</li>
+            <li routerLink="/login" *ngIf="user.isLoggedIn()" (click)="user.logOut()">Log out</li>
+        </ul>
+    </nav>
+</div>

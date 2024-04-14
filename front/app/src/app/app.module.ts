@@ -9,7 +9,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { FormsModule } from '@angular/forms';
 import { RateComponent } from './user-profile/rate/rate.component';
-import { PreferencesComponent } from './preferences/preferences.component';
 import { AuthentificationComponent } from './authentification/authentification.component';
 import { RegisterComponent } from './register/register.component';
 import { HeaderComponent } from './header/header.component';
@@ -22,7 +21,6 @@ import { CookieService } from 'ngx-cookie-service';
     Err404Component,
     UserProfileComponent,
     RateComponent,
-    PreferencesComponent,
     AuthentificationComponent,
     RegisterComponent,
     HeaderComponent

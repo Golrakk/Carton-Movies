@@ -1,14 +1,19 @@
-Tu es {{user.nom}}
-Ton email est {{user.email}}
+<h1>Welcome {{user.name}}</h1>
 
-<div>
-    <label for="nouveauMDP">Changer le mot de passe</label>
-    <input [(ngModel)]="nouveauMDP" type="text">
-</div>
-<div>
-    <label for="nouveauMail">Changer le mail</label>
-    <input [(ngModel)]="nouveauMail" type="text">
-</div>
+<div class="card">
+    <div>
+        <h3>Your email right now : {{user.email}}</h3>
+        <label for="email">Change your email to</label>
+        <input [(ngModel)]="email" type="text">
+    </div>
+    <div class="blank-space"></div>
+    <div>
+        <label for="password">Changer your password to</label>
+        <input [(ngModel)]="password" type="text">
+    </div>
 
-<button (click)="onSubmitAjout()">Valider</button>
-<br>
+
+    <button (click)="onSubmitAjout()">Confirm</button>
+    <br>
+</div>
+<p [(ngModel)]="errorMsg"></p>

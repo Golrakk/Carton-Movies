@@ -1,14 +1,13 @@
-Page de connexion top cool
+<h1>Log In</h1>
+<div class="card">
+    <div>
+        <label for="password">Username</label>
+        <input [(ngModel)]="name" type="text">
 
-<div>
-    <label for="password">Ici tu mets ton super nom</label>
-    <input [(ngModel)]="name" type="text">
+        <label for="password">‎ ‎ ‎ ‎ ‎ ‎ Password</label>
+        <input [(ngModel)]="password" type="text">
+
+        <button (click)="onValidation()">Connexion</button>
+    </div>
 </div>
-<div>
-    <label for="password">Et ici ton mot de passe top secret</label>
-    <input [(ngModel)]="password" type="text">
-</div>
-<div>
-    Et maintenant tu te
-    <button (click)="onValidation()">Connecte</button> !
-</div>
+<p [(ngModel)]="errorMsg"></p>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from '../services/user.service';
-import { CookieService } from 'ngx-cookie-service';
+
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authentification',
@@ -11,14 +12,20 @@ export class AuthentificationComponent {
   name: String = "";
   password: String = "";
   token: string = "";
+  errorMsg: string = "";
 
-  constructor(public userService: UserService, private cookieService: CookieService) { }
-
+  constructor(public userService: UserService, private router: Router) { }
+  ngOnInit(): void {
+    if (this.userService.isLoggedIn()) {
+      this.router.navigate(['/'])
+    }
+  }
 
   public async onValidation() {
-    this.token = await this.userService.login(this.name, this.password);
-    this.cookieService.set('auth', 'yes');
-    console.log(this.token);
+    //await this.userService.login(this.name, this.password);
+    console.log("WOOSHFOBU")
+    this.userService.login(this.name, this.password);
+
   }
 
 }

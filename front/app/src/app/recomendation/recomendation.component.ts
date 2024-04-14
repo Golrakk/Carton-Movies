@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Movie, movies } from '../modeles/movie';
 import { RecomendationService } from '../services/recomendation.service';
+import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recomendation',
@@ -12,12 +14,15 @@ export class RecomendationComponent {
   user: string = "";
   searched: boolean = false;
   userFound: boolean = false;
+  errorMsg: string = "";
 
-  constructor(public recommandationService: RecomendationService) {
+  constructor(public recommandationService: RecomendationService, public userService: UserService, private router: Router) {
     this.movies = [];
   }
-
-  async ngOnInit() {
+  ngOnInit(): void {
+    if (!this.userService.isLoggedIn()) {
+      this.router.navigate(['/login'])
+    }
     this.getMovies()
   }
 

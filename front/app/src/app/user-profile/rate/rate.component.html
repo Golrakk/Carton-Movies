@@ -1,26 +1,29 @@
-<h2>Search for a movie and rate it</h2>
-<div>
-    <label for="movie">Search for a movie</label>
-    <input [(ngModel)]="movie" type="text">
-    <button (click)="findMovie()">Find movie</button>
-</div>
-<div *ngIf="searched">
-    <div *ngIf="!movieFound">
-        <div> <strong>Your movie IS in our database! Now rate it</strong></div>
-        <span class="star-rating">
-            <input type="radio" name="rating" [(ngModel)]="movieRate" value=1><i></i>
-            <input type="radio" name="rating" [(ngModel)]="movieRate" value="2"><i></i>
-            <input type="radio" name="rating" [(ngModel)]="movieRate" value="3"><i></i>
-            <input type="radio" name="rating" [(ngModel)]="movieRate" value="4"><i></i>
-            <input type="radio" name="rating" [(ngModel)]="movieRate" value="5"><i></i>
-        </span>
-        <button (click)="rateMovie()">Rate movie</button>
-        <div *ngIf="rated">
-            <div *ngIf="!movieRate">You need to rate your movie...</div>
-            <div *ngIf="movieRate">Your movie was successfully added to our database</div>
+<h1>Search for a movie and rate it</h1>
+<div class="card">
+    <div>
+        <label for="movie">Search for a movie</label>
+        <input [(ngModel)]="movie" type="text">
+        <button (click)="findMovie()">Find movie</button>
+    </div>
+    <div *ngIf="searched">
+        <div *ngIf="!movieFound">
+            <div> <strong>Your movie IS in our database! Now rate it</strong></div>
+            <span class="star-rating">
+                <input type="radio" name="rating" [(ngModel)]="movieRate" value=1><i></i>
+                <input type="radio" name="rating" [(ngModel)]="movieRate" value="2"><i></i>
+                <input type="radio" name="rating" [(ngModel)]="movieRate" value="3"><i></i>
+                <input type="radio" name="rating" [(ngModel)]="movieRate" value="4"><i></i>
+                <input type="radio" name="rating" [(ngModel)]="movieRate" value="5"><i></i>
+            </span>
+            <button (click)="rateMovie()">Rate movie</button>
+            <div *ngIf="rated">
+                <div *ngIf="!movieRate">You need to rate your movie...</div>
+                <div *ngIf="movieRate">Your movie was successfully added to our database</div>
+            </div>
+        </div>
+        <div *ngIf="!movieFound">
+            Your movie was not found, try again
         </div>
     </div>
-    <div *ngIf="!movieFound">
-        Your movie was not found, try again
-    </div>
 </div>
+<p [(ngModel)]="errorMsg"></p>

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RecomendationComponent } from './recomendation/recomendation.component';
 import { Err404Component } from './err404/err404.component';
-import { PreferencesComponent } from './preferences/preferences.component';
 import { UserProfileComponent } from "./user-profile/user-profile.component";
 import { RateComponent } from './user-profile/rate/rate.component';
 import { AuthentificationComponent } from './authentification/authentification.component';
@@ -14,7 +13,6 @@ const routes: Routes = [
   { path: 'signin', component: RegisterComponent },
   { path: 'user', component: UserProfileComponent },
   { path: 'rate', component: RateComponent },
-  { path: 'preferences', component: PreferencesComponent },
   { path: '*', component: Err404Component }
 ];
 

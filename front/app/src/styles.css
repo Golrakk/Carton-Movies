@@ -74,7 +74,6 @@ body {
 html,
 body {
   padding: 0;
-  margin: 20px;
   height: 100%;
   width: 100%;
   font-size: 16px;
@@ -84,7 +83,11 @@ body {
   flex-flow: column nowrap;
   background-color: var(--noir);
   color: var(--gris);
+  max-width: 97.5%;
+  /* Adjust the maximum width as needed */
+  margin: 0 auto;
 }
+
 
 h1 {
   color: var(--cyan);
@@ -119,22 +122,29 @@ body>footer {
 nav>ul {
   display: flex;
   flex-flow: row nowrap;
-  margin: 0;
+
+
 }
 
 nav>ul>li {
   list-style: none;
   padding: 5px 15px;
   cursor: pointer;
-  background-color: var(--noir);
+  background-color: var(--bleu);
   color: var(--clair);
   transition: all .3s ease;
-  margin: 0;
   margin-right: 1px;
 }
 
-nav>ul>li:hover {
+.header {
   background-color: var(--bleu);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  align-items: center;
+}
+
+nav>ul>li:hover {
+  background-color: var(--noir);
   color: var(--gris);
 }
 

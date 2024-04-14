@@ -1,17 +1,16 @@
-<div>
-    <label for="nouveauNom">Choisi ton nom de champion (tu pourras pas le changer)</label>
-    <input [(ngModel)]="nouveauNom" type="text">
-</div>
-<div>
-    <label for="nouveauEmail">Ensuite ton mail pour être SPAM de notif inutiles</label>
-    <input [(ngModel)]="nouveauEmail" type="text">
-</div>
-<div>
-    <label for="nouveauMDP">Et ici un mot de passe aux petits oignons (le mien c'est "Garbure Béarn 64")</label>
-    <input [(ngModel)]="nouveauMDP" type="text">
-</div>
-<div>
-    Et maintenant tu 
-    <button (click)="onValidation()">Enregistre</button> !
+<h1>Sign in</h1>
+<div class="card">
+    <div>
+        <label for="password">Username</label>
+        <input [(ngModel)]="name" type="text">
+
+        <label for="email">‎ ‎ ‎ ‎ ‎ ‎ Email</label>
+        <input [(ngModel)]="email" type="text">
+
+        <label for="password">‎ ‎ ‎ ‎ ‎ ‎ Password</label>
+        <input [(ngModel)]="password" type="text">
+
+        <button (click)="onValidation()">Connexion</button>
+    </div>
 </div>
 <p [(ngModel)]="errorMsg"></p>

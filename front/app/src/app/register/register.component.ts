@@ -9,18 +9,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  nouveauNom: string = ""
-  nouveauMDP: string = ""
-  nouveauEmail: string = ""
+  name: string = ""
+  password: string = ""
+  email: string = ""
 
   errorMsg: string = "";
 
 
   constructor(public userService: UserService, private router: Router) { }
-
+  ngOnInit(): void {
+    if (this.userService.isLoggedIn()) {
+      this.router.navigate(['/'])
+    }
+  }
 
   public onValidation() {
-    const user: User = { id: 0, nom: this.nouveauNom, email: this.nouveauEmail, password: this.nouveauMDP };
+    const user: User = { id: 0, name: this.name, email: this.password, password: this.email };
     var response = JSON.stringify(this.userService.registerUser(user))
     this.router.navigate(['/login']);
   }
