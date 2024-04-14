@@ -1,5 +1,4 @@
-<p>gout works!</p>
-<div>Pour les films suivants, (la liste de ceux que vous avez déjà vu), donnez votre avis
+<div>You have seen the following movies, give us your opinion on a scale of one to 5
 </div>
 <div>
     <img src="https://image.tmdb.org/t/p/w500/{{ movieEnCours.poster_path }}">
@@ -19,12 +18,13 @@
     <input type="radio" id="adore" name="fav_language" value="10">
     <label for="adore">J'adore</label><br>
 
-    <!-- il faut voir si on donne une value au osef et si oui laquelle -->
     <input type="radio" id="osef" name="fav_language" value="null">
     <label for="osef">je n'ai pas d'avis</label><br>
 
 </div>
 <div>
-    <button (click)="filmPrecedant()">Précédant</button>
-    <button (click)="filmSuivant()">Suivant</button>
+
+    <label for="movie">Ici tu mets ton super nom</label>
+    <input [(ngModel)]="movie" type="text">
+    <button (click)="findMovie()">Find movie</button>
 </div>

@@ -12,7 +12,7 @@ import { GoutComponent } from './user-profile/gout/gout.component';
 import { RechercheComponent } from './user-profile/gout/recherche/recherche.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 import { AuthentificationComponent } from './authentification/authentification.component';
-import { CreationCompteComponent } from './creation-compte/creation-compte.component';
+import { RegisterComponent } from './register/register.component';
 import { HeaderComponent } from './header/header.component';
 
 
@@ -26,7 +26,7 @@ import { HeaderComponent } from './header/header.component';
     RechercheComponent,
     PreferencesComponent,
     AuthentificationComponent,
-    CreationCompteComponent,
+    RegisterComponent,
     HeaderComponent
 
   ],

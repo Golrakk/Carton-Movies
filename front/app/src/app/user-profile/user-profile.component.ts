@@ -30,10 +30,10 @@ export class UserProfileComponent implements OnInit {
     if (this.nouveauMail != "") {
       this.user.email = this.nouveauMail
     }
-    this.enregistrerUser(this.user)
+    this.registerUser(this.user)
   }
 
-  enregistrerUser(user: User) {
-    this.userService.enregistrerUser(user);
+  registerUser(user: User) {
+    this.userService.registerUser(user);
   }
 }

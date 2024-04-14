@@ -7,14 +7,15 @@ import { Movie } from 'src/app/modeles/movie';
   styleUrls: ['./gout.component.css']
 })
 export class GoutComponent {
+  movie: string = ""
   moviesVus: Movie[] = []
-  movieEnCours: Movie = {"id":0,"title":"erreur", "genre_ids":[],"poster_path":"","release_date":"","vote_average":0}
-  numeroMovieEnCours: number =0;
+  movieEnCours: Movie = { "id": 0, "title": "erreur", "genre_ids": [], "poster_path": "", "release_date": "", "vote_average": 0 }
+  numeroMovieEnCours: number = 0;
 
   ngOnInit(): void {
     this.moviesVus = []
     // this.moviesVus = getAllMoviesVuesParLeUser()
-    if (this.moviesVus.length==0) {
+    if (this.moviesVus.length == 0) {
       //panik pas de film
     } else {
       this.movieEnCours = this.moviesVus[0];
@@ -22,18 +23,21 @@ export class GoutComponent {
 
   }
 
-  filmPrecedant(){
-    if (this.numeroMovieEnCours==0) {
+  findMovie() {
+    //getsearchmovie(movie)
+  }
+  filmPrecedant() {
+    if (this.numeroMovieEnCours == 0) {
       this.numeroMovieEnCours = this.moviesVus.length
     } else {
       this.numeroMovieEnCours--
-      this.numeroMovieEnCours = this.numeroMovieEnCours%this.moviesVus.length
+      this.numeroMovieEnCours = this.numeroMovieEnCours % this.moviesVus.length
     }
     this.movieEnCours = this.moviesVus[this.numeroMovieEnCours]
   }
-  filmSuivant(){
+  filmSuivant() {
     this.numeroMovieEnCours++
-    this.numeroMovieEnCours = this.numeroMovieEnCours%this.moviesVus.length
+    this.numeroMovieEnCours = this.numeroMovieEnCours % this.moviesVus.length
     this.movieEnCours = this.moviesVus[this.numeroMovieEnCours]
   }
 

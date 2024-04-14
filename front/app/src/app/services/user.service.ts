@@ -18,15 +18,11 @@ export class UserService {
     return this.user
   }
 
-  public enregistrerUser(userModif: User) {
+  public registerUser(userModif: User) {
     this.http.post<any>(process.env['API_HOST'] + '/api/user/?username=' + userModif.nom + '&email=' + userModif.email + '&password=' + userModif.password, { title: 'test' }).subscribe(data => {
       var res = data.id;
     })
 
-  }
-
-  public createUser(nom: String, email: String, password: String) {
-    //TODO appel API
   }
 
   public async login(nom: String, password: String) {

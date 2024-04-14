@@ -4,11 +4,11 @@ import { User } from '../modeles/user';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-creation-compte',
-  templateUrl: './creation-compte.component.html',
-  styleUrls: ['./creation-compte.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class CreationCompteComponent {
+export class RegisterComponent {
   nouveauNom: string = ""
   nouveauMDP: string = ""
   nouveauEmail: string = ""
@@ -21,7 +21,7 @@ export class CreationCompteComponent {
 
   public onValidation() {
     const user: User = { id: 0, nom: this.nouveauNom, email: this.nouveauEmail, password: this.nouveauMDP };
-    var response = JSON.stringify(this.userService.enregistrerUser(user))
+    var response = JSON.stringify(this.userService.registerUser(user))
     this.router.navigate(['/login']);
   }
 }

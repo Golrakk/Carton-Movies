@@ -7,15 +7,16 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./authentification.component.css']
 })
 export class AuthentificationComponent {
-  nouveauNom: String = "";
-  nouveauMDP: String = "";
+  name: String = "";
+  password: String = "";
   token: string = "";
 
   constructor(public userService: UserService) { }
 
 
   public async onValidation() {
-    this.token = await this.userService.login(this.nouveauNom, this.nouveauMDP);
+    this.token = await this.userService.login(this.name, this.password);
     console.log(this.token);
   }
+
 }

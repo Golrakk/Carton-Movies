@@ -4,15 +4,23 @@ from Utilisateur import User
 import psycopg2
 import json
 from configparser import ConfigParser
+import os
 
+def config():
+    db = {
+      'host': os.environ.get('DB_HOST'),
+      'database': os.environ.get('DB_DB'),
+      'password': os.environ.get('DB_PASSWORD'),
+      'user': os.environ.get('DB_USER'),
+      'port': os.environ.get('DB_PORT')
+    }
+
+    return db
 
 def read_db(req: string):
-    conn = psycopg2.connect(
-        host="bpv7mlbngflnnamyjr6x-postgresql.services.clever-cloud.com",
-        port="6172",
-        database="bpv7mlbngflnnamyjr6x",
-        user="uljpz0f1fxjpdk0ps0be",
-        password="xLpCEPFKqrG8uV12sQbK")
+    # read connection parameters
+    params = config()
+    conn = psycopg2.connect(**params)
     # create a cursor
     cur = conn.cursor()
 
@@ -29,12 +37,9 @@ def read_db(req: string):
 
 
 def update_bdd(req: string):
-    conn = psycopg2.connect(
-        host="bpv7mlbngflnnamyjr6x-postgresql.services.clever-cloud.com",
-        port="6172",
-        database="bpv7mlbngflnnamyjr6x",
-        user="uljpz0f1fxjpdk0ps0be",
-        password="xLpCEPFKqrG8uV12sQbK")
+    # read connection parameters
+    params = config()
+    conn = psycopg2.connect(**params)
     # create a cursor
     cur = conn.cursor()
 
