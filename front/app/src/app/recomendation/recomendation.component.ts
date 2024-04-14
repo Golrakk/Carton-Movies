@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { Movie, movies } from '../modeles/movie';
 import { RecomendationService } from '../services/recomendation.service';
 
-@Component({
-  selector: 'app-recomendation',
-  templateUrl: './recomendation.component.html',
-  styleUrls: ['./recomendation.component.css']
-})
+// @Component({
+//   selector: 'app-recomendation',
+//   templateUrl: './recomendation.component.html',
+//   styleUrls: ['./recomendation.component.css']
+// })
 export class RecomendationComponent {
   movies: Movie[];
   user: string = "";

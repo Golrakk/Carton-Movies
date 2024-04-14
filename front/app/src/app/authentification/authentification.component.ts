@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { CookieService } from 'ngx-cookie-service';
 
-@Component({
-  selector: 'app-authentification',
-  templateUrl: './authentification.component.html',
-  styleUrls: ['./authentification.component.css']
-})
+// @Component({
+//   selector: 'app-authentification',
+//   templateUrl: './authentification.component.html',
+//   styleUrls: ['./authentification.component.css']
+// })
 export class AuthentificationComponent {
   name: String = "";
   password: String = "";

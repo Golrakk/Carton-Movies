@@ -11,7 +11,7 @@ export class PreferencesComponent {
   prefs: Preferences[];
   prefsList: Preferences[];
   prefAdult: boolean;
-  
+
   constructor() {
     this.prefs = [];
     this.prefsList = [];
@@ -22,7 +22,7 @@ export class PreferencesComponent {
     this.prefs = prefs;
   }
 
-  addRemovePrefs(pref : Preferences) {
+  addRemovePrefs(pref: Preferences) {
     if (this.prefsList.includes(pref)) {
       this.prefsList = this.prefsList.filter(prf => prf !== pref);
     }
@@ -30,20 +30,20 @@ export class PreferencesComponent {
       this.prefsList.push(pref);
     }
 
-   this.prefsList.forEach(element => {
-    console.log(element.name + " " + element.id)
-   });
+    this.prefsList.forEach(element => {
+      console.log(element.name + " " + element.id)
+    });
   }
 
   sendPrefs() {
     var jsonPref = JSON.stringify(this.prefsList);
     if (this.prefsList.length != 0) {
-      var jsonRes = JSON.stringify({adult: this.prefAdult, genres: this.prefsList});
+      var jsonRes = JSON.stringify({ adult: this.prefAdult, genres: this.prefsList });
     }
     else {
-      var jsonRes = JSON.stringify({adult: this.prefAdult, genres: []});
+      var jsonRes = JSON.stringify({ adult: this.prefAdult, genres: [] });
     }
-    
+
     console.log(jsonRes)
   }
 }
