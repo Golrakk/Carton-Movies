@@ -10,7 +10,7 @@ services:
       - '5432:5432'
     volumes:
       - db:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d
+      - ./user_init.sql:/docker-entrypoint-initdb.d/init.sql
 
   movie_db:
     image: postgres:16-alpine
@@ -23,7 +23,7 @@ services:
       - '5433:5432'
     volumes:
       - movie_db:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d
+      - ./movie_init.sql:/docker-entrypoint-initdb.d/init.sql
 
   cartonscraping:
     build:
@@ -35,9 +35,11 @@ services:
       - MOVIE_DB_NAME=${MOVIE_DATABASE_NAME}
       - MOVIE_DB_PASSWORD=${DATABASE_PASSWORD}
       - MOVIE_DB_USER=${DATABASE_USER}
-      - MOVIE_DB_PORT=5433
+      - MOVIE_DB_PORT=5432
     expose:
       - '8000'
+    depends_on:
+      - movie_db
 
   cartonback:
     build:
@@ -59,6 +61,9 @@ services:
       - MOVIE_DB_PASSWORD=${DATABASE_PASSWORD}
     ports:
       - '8080:8080'
+    depends_on:
+      - user_db
+      - movie_db
 
   cartonfront:
     build:

@@ -1,3 +1,4 @@
+from time import sleep
 import requests
 import psycopg2
 import os
@@ -68,5 +69,5 @@ def send_data(data, cur,conn):
         cur.execute(req)
         conn.commit()
 
-
+sleep(5)
 get_data()
