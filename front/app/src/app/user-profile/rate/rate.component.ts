@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Movie } from 'src/app/modeles/movie';
+import { RecomendationService } from 'src/app/services/recomendation.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class RateComponent {
   rated: boolean = false;
   movieRate: number = 0;
   errorMsg: string = "";
-  constructor(public userService: UserService, private router: Router) { }
+  constructor(public userService: UserService, private router: Router, public recomendation: RecomendationService) { }
   ngOnInit(): void {
     if (!this.userService.isLoggedIn()) {
       this.router.navigate(['/'])
@@ -23,7 +24,7 @@ export class RateComponent {
   }
   findMovie() {
     this.searched = true;
-    //getsearchmovie(movie)
+    this.recomendation.getmovie(this.movie)
   }
 
   rateMovie() {

@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class RecomendationComponent {
   movies: Movie[];
   user: string = "";
+  password: string = "";
   searched: boolean = false;
   userFound: boolean = false;
   errorMsg: string = "";
@@ -28,7 +29,7 @@ export class RecomendationComponent {
 
   async addUser() {
     this.searched = true;
-    //this.userFound = (call api pour trouver le user)
+    this.userFound = this.userService.getNewUser(this.user, this.password)
 
     //this.movies.append(liste des films recommandés a user)
   }

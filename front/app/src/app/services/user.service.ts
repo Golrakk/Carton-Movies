@@ -7,6 +7,8 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root'
 })
 
+
+
 export class UserService {
   private user: User | null = null
   public token: string;
@@ -17,6 +19,16 @@ export class UserService {
 
   public getUser() {
     return this.user
+  }
+
+  public async getNewUser(name: string, password: string) {
+    var exists: boolean = false;
+    await this.http.get(process.env['API_HOST'] + '/api/token/?username=' + name + '&password=' + password).subscribe((res) => {
+      if (res = !"") {
+        exists = true;
+      }
+    })
+    return exists;
   }
 
   public registerUser(userModif: User) {
@@ -30,18 +42,17 @@ export class UserService {
     var token: string;
     token = "";
 
-    // await this.http.get(process.env['API_HOST'] + '/api/token/?username=' + nom + '&password=' + password).subscribe((res) => {
-    //   token = JSON.stringify(Object.values(res)[0]);
-    //   console.log(token);
+    await this.http.get(process.env['API_HOST'] + '/api/token/?username=' + nom + '&password=' + password).subscribe((res) => {
+      token = JSON.stringify(Object.values(res)[0]);
+      console.log(token);
+      this.cookieService.set('auth', this.token);
+    });
 
-    // });
-    //Only do this if connection is successful
-    this.cookieService.set('auth', 'yes');
   }
 
   public isLoggedIn() {
     var isLogged: boolean = false;
-    if (this.cookieService.get('auth') == "yes") {
+    if ((this.cookieService.get('auth') == this.token) && (this.token != "")) {
       isLogged = true; //appel api token login
     } else {
       isLogged = false;

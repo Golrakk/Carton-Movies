@@ -6,14 +6,14 @@ import { Movie } from '../modeles/movie';
   providedIn: 'root'
 })
 export class RecomendationService {
-  jsonDataResult : Movie[];
+  jsonDataResult: Movie[];
 
   constructor(private http: HttpClient) {
     this.jsonDataResult = [];
   }
 
-  public async getJsonDataResult(){
-    await this.http.get(process.env['API_HOST']+'').subscribe((res) => {
+  public async getJsonDataResult() {
+    await this.http.get(process.env['API_HOST'] + '').subscribe((res) => {
       Object.values(res)[1].forEach((mov: any) => {
         this.jsonDataResult.push(mov as Movie)
       });
@@ -22,5 +22,17 @@ export class RecomendationService {
 
     console.log(this.jsonDataResult);
     return this.jsonDataResult;
+  }
+
+  public async getmovie(movie: string) {
+    var exists: boolean = false;
+    await this.http.get(process.env['API_HOST'] + '/api/movieList/' + movie).subscribe((res) => {
+      Object.values(res)[1].forEach((mov: any) => {
+        if (mov != "") {
+          exists = true;
+        }
+      });
+    });
+    return exists;
   }
 }

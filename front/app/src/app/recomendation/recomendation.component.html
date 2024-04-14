@@ -5,6 +5,8 @@
 <div class="card">
   <label for="user">Add another user</label>
   <input [(ngModel)]="user" type="text">
+  <label for="password">His password</label>
+  <input [(ngModel)]="password" type="password">
   <button (click)="addUser()">Add user</button>
 </div>
 <div *ngIf="searched">
