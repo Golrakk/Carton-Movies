@@ -66,7 +66,12 @@ def send_data(data, cur,conn):
             d_release = "NULL"
 
         req = "INSERT INTO movies(genre_ids,id,original_language,original_title,overview,release_date,title, vote_average) VALUES (ARRAY " + str(d["genre_ids"]) + "::integer[]," + str(d["id"]) + ",\'" + d["original_language"] + "\',\'" + d["original_title"].replace('\'','`') + "\',\'" + d["overview"].replace('\'','`') + "\'," + d_release + ",\'" + d["title"].replace('\'','`') + "\'," + str(d["vote_average"]) + ");"
-        cur.execute(req)
+        try: 
+            cur.execute(req)
+        except Exception as e:
+            print(e)
+            print(req)
+            conn.rollback()
         conn.commit()
 
 sleep(5)
