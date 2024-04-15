@@ -1,4 +1,4 @@
-# Last LTS version of node
+# Node LTS
 FROM node:20.9.0
 
 # set working directory
@@ -8,8 +8,7 @@ WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 
 # install app dependencies
-COPY ./app/package.json ./package.json
-COPY ./app/package-lock.json ./package-lock.json
+COPY ./app .
 RUN npm install
 
-CMD ["ng", "serve"]
+CMD ["ng", "serve", "--host", "0.0.0.0"]

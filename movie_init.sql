@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS movies (
+CREATE TABLE IF NOT EXISTS "movies" (
     genre_ids INTEGER[],
     id INTEGER PRIMARY KEY,
     original_language VARCHAR,

@@ -56,7 +56,7 @@ services:
       - TOKEN_ALGORITHM=${TOKEN_ALGORITHM}
       - MOVIE_DB_HOST=movie_db
       - MOVIE_DB_NAME=${MOVIE_DATABASE_NAME}
-      - MOVIE_DB_PORT=5433
+      - MOVIE_DB_PORT=5432
       - MOVIE_DB_USER=${DATABASE_USER}
       - MOVIE_DB_PASSWORD=${DATABASE_PASSWORD}
     ports:
@@ -72,7 +72,7 @@ services:
     environment:
       - API_URL=cartonback
     ports:
-      - '8081:4200'
+      - '4200:4200'
 
 volumes:
   db:
